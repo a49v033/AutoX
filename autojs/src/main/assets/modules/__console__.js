@@ -10,9 +10,9 @@ module.exports = function (runtime, scope) {
 
     console.rawInput = rtConsole.rawInput.bind(rtConsole);
 
-    console.input = function (data, param) {
-        return eval(console.rawInput.call(console, [].slice(arguments)) + "");
-    }
+    console.input = function () {
+        return eval(console.rawInput.apply(console, arguments) + '');
+    };
 
     console.log = function () {
         rtConsole.log(util.format.apply(util, arguments));
@@ -83,7 +83,8 @@ module.exports = function (runtime, scope) {
     console.setSize = rtConsole.setSize.bind(rtConsole);
     console.setPosition = rtConsole.setPosition.bind(rtConsole);
     console.setTitle = rtConsole.setTitle.bind(rtConsole);
-    console.setBackgroud = rtConsole.setBackgroud.bind(rtConsole);
+    console.setBackgroud =rtConsole.setBackground.bind(rtConsole);
+    console.setBackground = rtConsole.setBackground.bind(rtConsole);
     console.setCanInput = rtConsole.setCanInput.bind(rtConsole);
     console.setLogSize = rtConsole.setLogSize.bind(rtConsole);
     console.setMaxLines = rtConsole.setMaxLines.bind(rtConsole);
